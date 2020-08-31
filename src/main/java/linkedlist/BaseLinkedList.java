@@ -29,6 +29,8 @@ public class BaseLinkedList {
         insertElementAtEnd(linkedList.head, 6);
         insertElementAtEnd(null, 6);
 
+        deleteElementInLL(linkedList.head, 1);
+
 
     }
 
@@ -121,8 +123,35 @@ public class BaseLinkedList {
         printLL(head);
     }
 
-    static void deleteElementInLL(LinkedList.Node head, LinkedList.Node delete){
+    /**
+     *  Trick: The main idea to delete a node is point previous to the next to next node.
+     *          This will de-link the delete node.
+     *
+     * @param head
+     * @param key
+     */
+    static void deleteElementInLL(LinkedList.Node head, int key){
+        LinkedList.Node prev = null;
+        LinkedList.Node current = head;
 
+        if(head == null){
+            return;
+        }
+
+        if(head.data == key){
+            head = head.next;
+            printLL(head);
+            return;
+        }
+
+        while(current.next != null){
+            if(current.next.data == key){
+                current.next = current.next.next;
+                printLL(head);
+                return;
+            }
+            current = current.next;
+        }
     }
 
     /**
@@ -135,6 +164,10 @@ public class BaseLinkedList {
      * @param head - Pass head of the linked list.
      */
     static void printLL(LinkedList.Node head){
+
+        if(head == null)
+            return;
+
         while(head != null){
             System.out.print(head.data+" -> ");
             head = head.next;
