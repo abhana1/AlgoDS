@@ -31,6 +31,10 @@ public class BaseLinkedList {
 
         deleteElementInLL(linkedList.head, 1);
 
+        printLL(ReverseLL.reverseLL(linkedList.head));
+
+        printLL(RotateLL.rotate(linkedList.head,6));
+
 
     }
 
